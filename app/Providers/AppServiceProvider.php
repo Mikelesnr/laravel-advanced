@@ -6,7 +6,7 @@ use App\Billing\CreditPaymentGateway;
 use App\Billing\PaymentGatewayContract;
 use App\Billing\BankPaymentGateway;
 use Illuminate\Support\ServiceProvider;
-
+use App\DeliveryService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,6 +30,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->app->singleton('Parcel',function(){
+            return new DeliveryService('Zimbabwe','by_air');
+        });
     }
 }
